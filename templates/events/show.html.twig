@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Events
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1 class="text-white">Event details</h1>
+		<div class="card text-center bg-custom custom-card">
+			<img src="{{ asset('picture_directory/'~ event.eventsImage) }}" alt="{{ event.eventsName }}">
+			<div class="card-body bg-custom">
+				<h2 class="card-title">{{ event.eventsName }}</h2>
+				<p class="card-text">{{ event.eventsDescription }}</p>
+			</div>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item bg-warning">
+					<strong>Location:</strong>
+					{{event.location}}
+				</li>
+				<li class="list-group-item bg-warning">
+					<strong>Street name:</strong>
+					{{event.StreetName}}
+				</li>
+				<li class="list-group-item bg-warning">
+					<strong>street number:</strong>
+					{{event.StreetNumber}}
+				</li>
+				<li class="list-group-item bg-warning">
+					<strong>Zip code:</strong>
+					{{event.ZipCode}}
+				</li>
+				<li class="list-group-item bg-warning">
+					<strong>City:</strong>
+					{{event.city}}
+				</li>
+				<li class="list-group-item bg-warning">
+					<strong>Organizer's phone number:</strong>
+					{{ event.eventsPhonenumber }}</li>
+				<li class="list-group-item bg-warning">
+					<strong>Organizer's contact:</strong>
+					{{ event.eventsEmail }}</li>
+				<li class="list-group-item bg-warning">
+					<strong>Premises capacity:</strong>
+					{{ event.eventsCapacity }}
+					pax</li>
+				<li class="list-group-item bg-warning">
+					<strong>Date:</strong>
+					{{ event.eventsDatetime ? event.eventsDatetime|date('Y-m-d H:i:s') : '' }}</li>
+				<li class="list-group-item bg-warning">
+					<strong>Link:</strong>
+					{{ event.eventsUrl }}</li>
+				<li class="list-group-item bg-warning">
+					<strong>Event's type:</strong>
+					{{ event.eventsType }}</li>
+			</ul>
+			<div class="card-body d-flex justify-content-center">
+				<a class="btn btn-warning me-2" href="{{ path('app_events_index') }}">Home</a>
+				<a class="btn btn-warning me-2" href="{{ path('app_events_edit', {'id': event.id}) }}">Edit</a>
+				<div>{{ include('events/_delete_form.html.twig') }}
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+{% endblock %}

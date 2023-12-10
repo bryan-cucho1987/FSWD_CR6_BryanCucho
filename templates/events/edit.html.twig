@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Events
+{% endblock %}
+
+{% block body %}
+	{% for message in app.flashes('success') %}
+		<div class="alert alert-success">
+			{{ message }}
+		</div>
+	{% endfor %}
+	<div class="container">
+		<h1>Edit your event</h1>
+		{{ include('events/_form.html.twig', {'button_label': 'Update'}) }}
+		<div class="card-body d-flex justify-content-center mb-3 ms-3 mt-3">
+			<a class="btn btn-warning" href="{{ path('app_events_index') }}">Back</a>
+			{{ include('events/_delete_form.html.twig') }}
+		</div>
+	</div>
+
+{% endblock %}

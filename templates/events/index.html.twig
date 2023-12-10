@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block title %}Events index
+{% endblock %}
+{% block body %}
+	<div class="hero">
+		<img class="heropic" src="{{ asset('/images/heroAI.jpeg') }}" alt="her">
+		<h1 class="hero-header text-center">Explore and immerse yourself in the Austrian charm!</h1>
+	</div>
+
+	<div class="container">
+		<br>
+		<h1 class="text-center !important;">Our events</h1>
+		<div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-xs-1">
+			{% for event in events %}
+				<div
+					class="card text-center bg-custom mb-3 ms-3">
+					{# {{ dump(event.eventsImage) }} #}
+					<img src="{{ asset('picture_directory/'~ event.eventsImage) }}" alt="{{ event.eventsName }}">
+					<div class="card-body">
+						<h5 class="card-title">{{ event.eventsName }}</h5>
+						<p class="card-text">
+							<strong>
+								Location:
+							</strong>
+							{{ event.location }}
+						</p>
+						{# <p class="card-text">
+												<strong>
+													Date:
+												</strong>
+												{{ status.name }}
+												</p>
+												<p class="card-text"> #}
+						<strong>
+							Date/Time:
+						</strong>
+						{{ event.eventsDatetime ? event.eventsDatetime|date('Y-m-d H:i:s') : '' }}</p>
+
+					<a class="btn btn-warning" href="{{ path('app_events_show', {'id': event.id}) }}">Details</a>
+					<a class="btn btn-warning" href="{{ path('app_events_edit', {'id': event.id}) }}">Edit</a>
+				</div>
+			</div>
+		{% else %}
+			<p>No records found</p>
+		{% endfor %}
+	</div>
+</div></div>{% endblock %}
